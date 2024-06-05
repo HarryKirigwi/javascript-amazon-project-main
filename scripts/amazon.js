@@ -1,3 +1,5 @@
+import { cart } from "../data/cart.js";
+
 let cartQuantity = 0;
 document.querySelector(".js-cart-quantity").innerHTML = cartQuantity;
 
