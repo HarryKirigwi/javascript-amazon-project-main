@@ -1,6 +1,6 @@
-import { cart, addToCart } from "../data/cart.js";
+import { cart, addToCart, savingToStorage } from "../data/cart.js";
 import { products } from "../data/products.js";
-
+const cartItems = localStorage.getItem("cart");
 let productsHtml = "";
 products.forEach((product) => {
   productsHtml += `<div class="product-container">
@@ -62,7 +62,7 @@ function updateCartQuantity() {
     cartQuantity += cartItem.quantity;
   });
 
-  console.log(cartQuantity);
+  //console.log(cart);
   document.querySelector(".js-cart-quantity").innerHTML = cartQuantity;
 }
 
@@ -74,5 +74,6 @@ document.querySelectorAll(".js-add-to-cart").forEach((button) => {
 
     addToCart(productId);
     updateCartQuantity();
+    savingToStorage();
   });
 });
