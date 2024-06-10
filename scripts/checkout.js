@@ -2,9 +2,6 @@ import { cart, removeFromCart } from "../data/cart.js";
 import { products } from "../data/products.js";
 import { formatCurrency } from "./utils/money.js";
 
-// const cartItems = localStorage.getItem("savedCartItems");
-// const cartArray = JSON.parse(cartItems);
-
 let checkoutItemHTML = "";
 cart.forEach((cartItem) => {
   const productId = cartItem.productId;
@@ -106,10 +103,10 @@ js-cart-item-container-${matchingProduct.id}">
     let productId = button.dataset.productId;
     button.addEventListener("click", () => {
       removeFromCart(productId);
-      const container = document
-        .querySelector(`.js-cart-item-container-${productId}`)
-        .remove();
-      
+      const container = document.querySelector(
+        `.js-cart-item-container-${productId}`
+      );
+      container.remove();
     });
   });
 });

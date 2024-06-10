@@ -1,17 +1,6 @@
-export let cart = [
-  {
-    productId: "3ebe75dc-64d2-4137-8860-1f5a963e534b",
-    quantity: 2,
-  },
-  {
-    productId: "dd82ca78-a18b-4e2a-9250-31e67412f98d",
-    quantity: 1,
-  },
-  {
-    productId: "3fdfe8d6-9a15-4979-b459-585b0d0545b9",
-    quantity: 7,
-  },
-];
+const cartItems = localStorage.getItem("savedCartItems");
+const cartArray = JSON.parse(cartItems);
+export let cart = cartArray || [];
 let savedCartItems;
 
 export function addToCart(productId) {
@@ -32,8 +21,7 @@ export function addToCart(productId) {
     });
   }
   savedCartItems = cart;
-
-  console.log(savedCartItems);
+  savingToStorage();
 }
 
 export function removeFromCart(productId) {
@@ -44,10 +32,10 @@ export function removeFromCart(productId) {
     }
   });
   cart = newCart;
+  savingToStorage();
   console.log(cart);
 }
 
-export function savingToStorage() {
-  let myCartString = JSON.stringify(savedCartItems);
-  localStorage.setItem("savedCartItems", myCartString);
+function savingToStorage() {
+  localStorage.setItem("savedCartItems", JSON.stringify(cart));
 }
