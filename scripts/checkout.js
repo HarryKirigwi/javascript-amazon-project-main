@@ -1,12 +1,12 @@
-import { cart } from "../data/cart.js";
+import { cart, deleteCartItem } from "../data/cart.js";
 import { products } from "../data/products.js";
 import { formatCurrency } from "./utils/money.js";
 
-const cartItems = localStorage.getItem("savedCartItems");
-const cartArray = JSON.parse(cartItems);
+// const cartItems = localStorage.getItem("savedCartItems");
+// const cartArray = JSON.parse(cartItems);
 
 let checkoutItemHTML = "";
-cartArray.forEach((cartItem) => {
+cart.forEach((cartItem) => {
   const productId = cartItem.productId;
   let matchingProduct;
 
@@ -43,7 +43,9 @@ cartArray.forEach((cartItem) => {
                   <span class="update-quantity-link link-primary">
                     Update
                   </span>
-                  <span class="delete-quantity-link link-primary">
+                  <span class="delete-quantity-link link-primary js-delete-link" data-product-id = "${
+                    matchingProduct.id
+                  }">
                     Delete
                   </span>
                 </div>
@@ -97,6 +99,7 @@ cartArray.forEach((cartItem) => {
           </div>
   `;
 
-  console.log(checkoutItemHTML);
+  //console.log(checkoutItemHTML);
   document.querySelector(".js-order-summary").innerHTML = checkoutItemHTML;
+  deleteCartItem();
 });

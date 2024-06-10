@@ -1,16 +1,16 @@
 export let cart = [
-  // {
-  //   productId: "3ebe75dc-64d2-4137-8860-1f5a963e534b",
-  //   quantity: 2,
-  // },
-  // {
-  //   productId: "dd82ca78-a18b-4e2a-9250-31e67412f98d",
-  //   quantity: 1,
-  // },
-  // {
-  //   productId: "3fdfe8d6-9a15-4979-b459-585b0d0545b9",
-  //   quantity: 7,
-  // },
+  {
+    productId: "3ebe75dc-64d2-4137-8860-1f5a963e534b",
+    quantity: 2,
+  },
+  {
+    productId: "dd82ca78-a18b-4e2a-9250-31e67412f98d",
+    quantity: 1,
+  },
+  {
+    productId: "3fdfe8d6-9a15-4979-b459-585b0d0545b9",
+    quantity: 7,
+  },
 ];
 let savedCartItems;
 
@@ -32,8 +32,26 @@ export function addToCart(productId) {
     });
   }
   savedCartItems = cart;
-  
+
   console.log(savedCartItems);
+}
+
+export function removeFromCart() {
+  document.querySelectorAll(".js-delete-link").forEach((button) => {
+    button.addEventListener("click", () => {
+      console.log("Clicked");
+      let newCart = [];
+      const productId = button.dataset.productId;
+      cart.forEach((cartItem) => {
+        if (cartItem.productId !== productId) {
+          newCart.push(cartItem);
+        }
+      });
+
+      cart = newCart;
+      console.log(cart);
+    });
+  });
 }
 
 export function savingToStorage() {
