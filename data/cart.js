@@ -36,25 +36,18 @@ export function addToCart(productId) {
   console.log(savedCartItems);
 }
 
-export function removeFromCart() {
-  document.querySelectorAll(".js-delete-link").forEach((button) => {
-    button.addEventListener("click", () => {
-      console.log("Clicked");
-      let newCart = [];
-      const productId = button.dataset.productId;
-      cart.forEach((cartItem) => {
-        if (cartItem.productId !== productId) {
-          newCart.push(cartItem);
-        }
-      });
-
-      cart = newCart;
-      console.log(cart);
-    });
+export function removeFromCart(productId) {
+  let newCart = [];
+  cart.forEach((cartItem) => {
+    if (cartItem.productId !== productId) {
+      newCart.push(cartItem);
+    }
   });
+  cart = newCart;
+  console.log(cart);
 }
 
 export function savingToStorage() {
-  const myCartString = JSON.stringify(savedCartItems);
+  let myCartString = JSON.stringify(savedCartItems);
   localStorage.setItem("savedCartItems", myCartString);
 }
