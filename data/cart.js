@@ -1,6 +1,5 @@
-const cartItems = localStorage.getItem("savedCartItems");
-const cartArray = JSON.parse(cartItems);
-export let cart = cartArray || [];
+export let cart = JSON.parse(localStorage.getItem("savedCartItems")) || [];
+
 let savedCartItems;
 
 export function addToCart(productId) {
@@ -18,7 +17,7 @@ export function addToCart(productId) {
     cart.push({
       productId: productId,
       quantity: 1,
-      deliveryOptionId: "2",
+      deliveryOptionId: "1",
     });
   }
   savedCartItems = cart;
@@ -68,4 +67,17 @@ function updateCartQuantityDisplay(cartQuantity) {
   } else {
     console.error(".js-return-to-home-link element not found");
   }
+}
+
+export function updateDeliveryOption(productId, deliveryOptionId) {
+  let matchingItem;
+
+  cart.forEach((cartItem) => {
+    if (productId === cartItem.productId) {
+      matchingItem = cartItem;
+    }
+  });
+
+  matchingItem.deliveryOptionId = deliveryOptionId;
+  savingToStorage();
 }
