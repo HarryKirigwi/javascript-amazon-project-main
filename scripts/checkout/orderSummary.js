@@ -96,6 +96,7 @@ js-cart-item-container-${matchingProduct.id}">
             </div>
           </div>
   `;
+   
 
     function deliveryOptionsHTML(matchingProduct, cartItem) {
       let html = "";
@@ -201,7 +202,7 @@ js-cart-item-container-${matchingProduct.id}">
           document
             .querySelector(`.js-quantity-label-${productId}`)
             .classList.remove("update-disappear");
-         
+
           const input = document.getElementById(`quantityInput${productId}`);
 
           const product = gettingProduct(productId);
