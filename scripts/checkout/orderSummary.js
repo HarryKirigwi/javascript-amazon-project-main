@@ -138,10 +138,7 @@ js-cart-item-container-${matchingProduct.id}">
       button.addEventListener("click", () => {
         removeFromCart(productId);
         updateCartQuantity();
-        const container = document.querySelector(
-          `.js-cart-item-container-${productId}`
-        );
-        container.remove();
+        renderOrderSummary();
         renderPaymentSummary();
       });
     });
