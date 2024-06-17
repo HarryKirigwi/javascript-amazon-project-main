@@ -70,5 +70,6 @@ function Cart(localStorageKey) {
 
 const cart = Cart("savedCartItems-oop");
 const businessCart = Cart("businessCart-oop");
+
 console.log(cart);
 console.log(businessCart);
