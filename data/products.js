@@ -25,14 +25,32 @@ class Product {
   }
 
   getRatingUrl() {
-   return `images/ratings/rating-${this.rating.stars * 10}.png`;
+    return `images/ratings/rating-${this.rating.stars * 10}.png`;
   }
 
   getPrice() {
     return `$${formatCurrency(this.priceCents)}`;
   }
+
+  extraInfoHTML() {
+    return "";
+  }
 }
 
+//Inheriting from the Product class
+class Clothing extends Product {
+  sizeChartLink;
+
+  constructor(productDetails) {
+    //Calls the constructor of the parent class
+    super(productDetails);
+    this.sizeChartLink = productDetails.sizeChartLink;
+  }
+
+  extraInfoHTML() {
+    return `<a href="${this.sizeChartLink}" target= "_blank">size chart</a>`;
+  }
+}
 
 export const products = [
   {
@@ -506,6 +524,11 @@ export const products = [
     keywords: ["sweaters", "hoodies", "apparel", "mens"],
   },
 ].map((productDetails) => {
-  return new Product(productDetails);
+  if (productDetails.type === "clothing") {
+    return new Clothing(productDetails);
+  } else {
+    return new Product(productDetails);
+  }
 });
+
 
