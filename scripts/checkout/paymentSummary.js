@@ -3,6 +3,7 @@ import { formatCurrency } from "../utils/money.js";
 import { gettingProduct } from "../../data/products.js";
 import { deliveryOptions } from "../../data/deliveryOptions.js";
 import { calculateCartQuantity } from "../../data/cart.js";
+import { renderOrderSummary } from "./orderSummary.js";
 
 export function renderPaymentSummary() {
   let cartQuantity = calculateCartQuantity();
@@ -69,4 +70,5 @@ export function renderPaymentSummary() {
         </button>`;
 
   document.querySelector(".js-payment-summary").innerHTML = paymentSummaryHTML;
+  renderOrderSummary();
 }
