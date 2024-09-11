@@ -65,10 +65,16 @@ export function renderPaymentSummary() {
           </div>
         </div>
 
-        <button class="place-order-button button-primary">
+        <button class="place-order-button button-primary add-to-cart-button
+        js-place-order-button">
           Place your order
         </button>`;
 
   document.querySelector(".js-payment-summary").innerHTML = paymentSummaryHTML;
   renderOrderSummary();
+
+  const placeOrderButton = document.querySelector('.js-place-order-button');
+  placeOrderButton.addEventListener('click', () => {
+    
+  })
 }
